@@ -1,9 +1,8 @@
 .App {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  width: 100%;
 }
 
 .App-logo {
@@ -18,7 +17,6 @@
 }
 
 .App-header {
-  background-color: #272af5;
   text-align: center;
   flex: 1;
   min-height: 100vh;
@@ -29,10 +27,6 @@
   font-size: calc(10px + 2vmin);
   color: rgb(255, 255, 255);
 }
-body {
-  background-color: #272af5; /* Arka plan rengini mavi olarak ayarlar */
-}
-
 
 .App-link {
   color: #61dafb;
@@ -50,48 +44,68 @@ body {
 
 /* CSS */
 .createbutton {
-  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
-  border-radius: .5rem;
-  color: #000000;
-  font-size: 16px;
-  padding: 1rem 1.75rem;
-  text-decoration: none;
-  width: 150px;
-  border: 10;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background-color: rgb(255, 235, 51);
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid rgb(255, 235, 51);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
 }
 
-.createbutton:hover {
-  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-div {
+  padding: 40px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.selectors {
+  margin-left: 30px;
 }
 
 .downloadbutton{
-  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
-  border-radius: .5rem;
-  color: #000000;
-  font-size: 16px;
-  padding: 1rem 1.75rem;
-  text-decoration: none;
-  width: 150px;
-  border: 10;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background-color: rgb(255, 235, 51);
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid rgb(255, 235, 51);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   visibility: hidden;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
 }
 
-.downloadbutton:hover{
-  background-image: linear-gradient(-180deg, #ff0000 0%, #ff0000 100%);
+.button-div {
+  display: flex;
+  justify-content: center;
 }
 
 .inputbox{
-  width: 20%;
-  height: 15px;
-  
+  width: 470px;
+  padding: 5px 10px;
+  border-radius: 0.5rem;
+  font-size: 20px;
   resize: none;
 }
 
@@ -99,52 +113,49 @@ body {
   visibility: hidden;
 }
 
+.canvas-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-.regeneratebutton{
-  position: relative;
-  top:  -250px;
-  left: -1%;
-  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
-  border-radius: .5rem;
-  color: #000000;
-  font-size: 16px;
-  padding: 1rem 1.75rem;
-  text-decoration: none;
-  width: 150px;
-  border: 10;
+.custom-grid-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.regeneratebutton_img{
+  padding: 1rem 0rem;
+  border-radius: 0.5rem;
+  background-color: rgb(255, 235, 51);
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid rgb(255, 235, 51);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   visibility: hidden;
+  width: 400px;
+  margin-bottom: 10px;
 }
 
 .regeneratebutton:hover{
   background-image: linear-gradient(-180deg, #ffd900 0%, #ffd900 100%);
 }
 
-.regeneratebutton_img:hover{
-  background-image: linear-gradient(-180deg, #d400ff 0%, #d400ff 100%);
+textarea:focus, input:focus, .createbutton:focus, .downloadbutton:focus, .regeneratebutton_img:focus {
+  outline: none;
 }
 
-.regeneratebutton_img {
-  position: relative;
-  top:  -250px;
-  left: 1%;  
-  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
-  border-radius: .5rem;
-  color: #000000;
-  font-size: 16px;
-  padding: 1rem 1.75rem;
-  text-decoration: none;
-  width: 150px;
-  border: 10;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  visibility: hidden;
-
+.createbutton:hover, .downloadbutton:hover, .regeneratebutton_img:hover {
+  background-color: rgb(255, 238, 84);
+  border: 1px solid rgb(255, 238, 84);
 }
 
 .canvas_container
@@ -160,6 +171,38 @@ body {
 
     /* this fixes the overflow:hidden in Chrome/Opera */
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.header {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.form {
+  margin: 1rem;
+  display: flex;
+}
+
+.input {
+  padding: 1rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border: 1px solid #ccc;
+  border-right: none;
+  color: #333;
+  background-color: #fff;
+  width: auto;
+}
+
+.button {
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background-color: #ffc400;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid #ffdb00;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) { /* Örnek bir sınırlayıcı genişlik */

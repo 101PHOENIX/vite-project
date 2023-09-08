@@ -35,16 +35,6 @@ function App(){
   const [sentence, setsentence] = useState(false);
 
 
-
-  useEffect(() => {
-    if (loading) {
-      document.getElementById("loading").style.visibility = "visible";
-    } else {
-      document.getElementById("loading").style.visibility = "hidden";
-    }
-  }, [loading]);
-
-
  // Sa
   useEffect(() => {
     document.addEventListener("contextmenu",handlecontextmenu)
@@ -603,60 +593,67 @@ window.addEventListener("DOMContentLoaded", () => {
       <div id="regenerateImage"></div>
       <IconContext.Provider value={{size: "2rem" , color: "green"}}>
       <header className="App-header">
-        <p>Mnemonic Generator</p>
-        <p>Enter Keywords</p>
-        <textarea
-          id="textarea"
-          className="inputbox"
-          type="text"
-          placeholder="Enter Words Here"
-          value={inputWords}
-          onChange={(e) => setInputWords(e.target.value)}
-        />
-        <p></p>
-        <p>
-          <input
-            type="radio"
-            id="sentence_button"
-            name="buttons"
-            className="selectors"
-            checked={isSentenceButtonChecked}
-            onChange={() => setIsSentenceButtonChecked(true)}
+        <div className='landing'>
+          <p className='header'>Mnemonic Generator</p>
+          <p>Enter Keywords</p>
+          <textarea
+            id="textarea"
+            className="inputbox"
+            autoFocus
+            type="text"
+            aria-multiline
+            rows={4}
+            value={inputWords}
+            onChange={(e) => setInputWords(e.target.value)}
           />
-          <label htmlFor="sentence_button">Sentence </label>
-          <input
-            type="radio"
-            id="word_button"
-            name="buttons"
-            className="selectors"
-            value="Word"
-            checked={!isSentenceButtonChecked}
-            onChange={() => setIsSentenceButtonChecked(false)}
-          />
-          <label htmlFor="word_button">Word</label>
-        </p>
-        <p>
-          <button
-            className="createbutton"
-            onClick={createMnemonic}
-          >
-            <FaMarker/>
-            Create Mnemonic
-          </button>
-          <button
-            className="downloadbutton"
-            id="textbutton"
-            onClick={downloadMnemonic}
-          >
-            <FaFileDownload/>
-            Download Mnemonic
-          </button>
-        </p>
-        <div>
+          <div className='select-div'>
+            <p>Select from</p>
+            <input
+              type="radio"
+              id="sentence_button"
+              name="buttons"
+              className="selectors"
+              checked={isSentenceButtonChecked}
+              onChange={() => setIsSentenceButtonChecked(true)}
+            />
+            <label className='label' htmlFor="sentence_button">Sentence </label>
+            <input
+              type="radio"
+              id="word_button"
+              name="buttons"
+              className="selectors"
+              value="Word"
+              checked={!isSentenceButtonChecked}
+              onChange={() => setIsSentenceButtonChecked(false)}
+            />
+            <label className='label' htmlFor="word_button">Word</label>
+          </div>
+          <div className='button-div'>
+            <button
+              className="createbutton"
+              onClick={createMnemonic}
+            >
+              <FaMarker color='black'/>
+              Create Mnemonic
+            </button>
+            <button
+              className="downloadbutton"
+              id="textbutton"
+              onClick={downloadMnemonic}
+            >
+              <FaFileDownload color='black'/>
+              Download Mnemonic
+            </button>
+          </div>          
+        </div>
+
+        <div className='canvas-div'>
           <p>Created Mnemonic:</p>
-          <p className="loading" id="loading">
-            {loading ? "Loading..." : ""}
-          </p>
+          {
+            loading && (
+              <p className="loading" id="loading">Loading...</p>
+            )
+          }
           <p className="createdMnemonic" id="CreatedMnemonic">
             {mnemonicText}
           </p>
@@ -671,7 +668,7 @@ window.addEventListener("DOMContentLoaded", () => {
             className="regeneratebutton_img"
             id="regeneratebutton_img"
           >
-            <FaRegImage/>
+            <FaRegImage color='black' />
             Regenerate Image
           </button>
         </div>
