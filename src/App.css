@@ -1,0 +1,181 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #272af5;
+  text-align: center;
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+body {
+  background-color: #272af5; /* Arka plan rengini mavi olarak ayarlar */
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* CSS */
+.createbutton {
+  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
+  border-radius: .5rem;
+  color: #000000;
+  font-size: 16px;
+  padding: 1rem 1.75rem;
+  text-decoration: none;
+  width: 150px;
+  border: 10;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.createbutton:hover {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+}
+
+.downloadbutton{
+  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
+  border-radius: .5rem;
+  color: #000000;
+  font-size: 16px;
+  padding: 1rem 1.75rem;
+  text-decoration: none;
+  width: 150px;
+  border: 10;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  visibility: hidden;
+}
+
+.downloadbutton:hover{
+  background-image: linear-gradient(-180deg, #ff0000 0%, #ff0000 100%);
+}
+
+.inputbox{
+  width: 20%;
+  height: 15px;
+  
+  resize: none;
+}
+
+.createdMnemonic{
+  visibility: hidden;
+}
+
+
+.regeneratebutton{
+  position: relative;
+  top:  -250px;
+  left: -1%;
+  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
+  border-radius: .5rem;
+  color: #000000;
+  font-size: 16px;
+  padding: 1rem 1.75rem;
+  text-decoration: none;
+  width: 150px;
+  border: 10;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  visibility: hidden;
+}
+
+.regeneratebutton:hover{
+  background-image: linear-gradient(-180deg, #ffd900 0%, #ffd900 100%);
+}
+
+.regeneratebutton_img:hover{
+  background-image: linear-gradient(-180deg, #d400ff 0%, #d400ff 100%);
+}
+
+.regeneratebutton_img {
+  position: relative;
+  top:  -250px;
+  left: 1%;  
+  background-image: linear-gradient(-180deg, #d4df14 0%, #d4df14 100%);
+  border-radius: .5rem;
+  color: #000000;
+  font-size: 16px;
+  padding: 1rem 1.75rem;
+  text-decoration: none;
+  width: 150px;
+  border: 10;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  visibility: hidden;
+
+}
+
+.canvas_container
+{
+    background: #ffffff;
+    border: 1px solid #aaa;
+    border-radius: 15px;
+    height: 500px;
+    margin: 20px 20px;
+    overflow: hidden;
+    width: 900px;
+    flex: 1;
+
+    /* this fixes the overflow:hidden in Chrome/Opera */
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+@media (max-width: 768px) { /* Örnek bir sınırlayıcı genişlik */
+  .App {
+    flex-direction: column; /* Küçük ekranlarda sıralı düzene geçin */
+  }
+
+  .App-header {
+    min-height: auto; /* Küçük ekranlarda yükseklik otomatik ayarlanacak */
+  }
+
+  .canvas_container {
+    max-width: 100%; /* Küçük ekranlarda genişliği tam ekran yapın */
+  }
+}
+
+.loading{
+  visibility: hidden;
+}
