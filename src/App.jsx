@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
 
-//import toast, { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 // ICONS
 import {FaCloudDownloadAlt} from "react-icons/fa"
@@ -44,7 +44,7 @@ function App(){
     }
   }, [loading]);
 
-/*
+
  // Sa
   useEffect(() => {
     document.addEventListener("contextmenu",handlecontextmenu)
@@ -58,7 +58,7 @@ function App(){
     alert("right clikc is disabeled")
     toast.error("right clikc is disabeled since this website is still development")
   }
-  */
+  
 
 //************************************** */
   const regenerateImage = async () => {
