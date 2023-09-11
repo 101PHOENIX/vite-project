@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
 
-import toast, { Toaster } from "react-hot-toast";
+//import toast, { Toaster } from "react-hot-toast";
 
 // ICONS
 import {FaCloudDownloadAlt} from "react-icons/fa"
@@ -34,7 +34,7 @@ function App(){
   const [buttonClicked, setbuttonClicked] = useState(false);
   const [sentence, setsentence] = useState(false);
 
-
+/*
  // Sa
   useEffect(() => {
     document.addEventListener("contextmenu",handlecontextmenu)
@@ -48,7 +48,7 @@ function App(){
     alert("right clikc is disabeled")
     toast.error("right clikc is disabeled since this website is still development")
   }
-  
+  */
 
 //************************************** */
   const regenerateImage = async () => {
@@ -241,12 +241,14 @@ function App(){
             
               return numericToTextMap[expression] || expression;
             }
+            
             // Metni alma
             var inputText = document.getElementById("textarea").value;
             console.log("inputText: " + inputText);
 
             function findNumericAndTextExpressions(text) { // four five six seven eight nine 
-              var expressions = text.match(/(\(\d+\)|\b(four|five|six|seven|eight|nine|ten)\b)/g);
+              var expressions = text.match(/(\(\d+\)|\b(four|five|six|seven|eight|nine|ten)\b|\b\d+\b)/g);
+
               console.log("expressions: " + expressions);
             
               if (expressions !== null) {
@@ -260,6 +262,8 @@ function App(){
             
             var numbers = findNumericAndTextExpressions(inputText);
             console.log("Rakamsal ve Yazısal İfadeler: " + numbers);
+            var numberstext = convertNumericToText(numbers[0]);
+            console.log("numberstext: " + numberstext);
             
             const chatCompletion =  await openai.chat.completions.create({
               model: "gpt-3.5-turbo-0301",
@@ -286,7 +290,7 @@ function App(){
             console.log("Harf Sayısı (Yazısal): " + harfSayisiText);
             
 
-            while (harfSayisiText != numbers[0]){
+            while (harfSayisiText != numberstext){
               const New_chatCompletion =  await openai.chat.completions.create({
                 model: "gpt-3.5-turbo-0301",
                 messages: [{"role": "user", "content": prompt}],
@@ -299,6 +303,8 @@ function App(){
               deneme =responseData.split('"')[1];
               deneme = deneme.replace(/\s+/g, '');
               console.log("deneme: " + deneme);
+              //var deneme = deneme.replace( /-/g, '');
+              //console.log("deneme: " + deneme);
 
               harfSayisi = deneme.length;
               console.log("deneme içindeki harf sayısı: " + harfSayisi);
@@ -646,7 +652,6 @@ window.addEventListener("DOMContentLoaded", () => {
             </button>
           </div>          
         </div>
-
         <div className='canvas-div'>
           <p>Created Mnemonic:</p>
           {

@@ -1,0 +1,224 @@
+.App {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+  
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+  
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+}
+  
+.App-header {
+    text-align: center;
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(255, 255, 255);
+}
+  
+.App-link {
+    color: #61dafb;
+}
+  
+@keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+  
+  
+  /* CSS */
+.createbutton {
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    background-color: rgb(255, 235, 51);
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid rgb(255, 235, 51);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+  
+.landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.select-div {
+    padding: 40px 0px;
+    display: flex;
+    align-items: center;
+}
+  
+.selectors {
+    margin-left: 30px;
+}
+  
+.downloadbutton{
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    background-color: rgb(255, 235, 51);
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid rgb(255, 235, 51);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+  
+.button-div {
+    display: flex;
+    justify-content: center;
+}
+  
+.inputbox{
+    width: 470px;
+    padding: 5px 10px;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    resize: none;
+}
+  
+.createdMnemonic{
+    visibility: hidden;
+}
+  
+.canvas-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+.custom-grid-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+  
+.regeneratebutton_img{
+    padding: 1rem 0rem;
+    border-radius: 0.5rem;
+    background-color: rgb(255, 235, 51);
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid rgb(255, 235, 51);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    width: 400px;
+    margin-bottom: 10px;
+}
+  
+.regeneratebutton:hover{
+    background-image: linear-gradient(-180deg, #ffd900 0%, #ffd900 100%);
+}
+  
+textarea:focus, input:focus, .createbutton:focus, .downloadbutton:focus, .regeneratebutton_img:focus {
+    outline: none;
+}
+  
+.createbutton:hover, .downloadbutton:hover, .regeneratebutton_img:hover {
+    background-color: rgb(255, 238, 84);
+    border: 1px solid rgb(255, 238, 84);
+}
+  
+.canvas_container
+  {
+      background: #ffffff;
+      border: 1px solid #aaa;
+      border-radius: 15px;
+      height: 500px;
+      margin: 20px 20px;
+      overflow: hidden;
+      width: 900px;
+      flex: 1;
+  
+      /* this fixes the overflow:hidden in Chrome/Opera */
+      -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+  
+.header {
+    font-size: 50px;
+    font-weight: 600;
+}
+  
+.form {
+    margin: 1rem;
+    display: flex;
+}
+  
+.input {
+    padding: 1rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border: 1px solid #ccc;
+    border-right: none;
+    color: #333;
+    background-color: #fff;
+    width: auto;
+}
+  
+.button {
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    background-color: #ffc400;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid #ffdb00;
+    cursor: pointer;
+}
+  
+@media (max-width: 768px) { /* Örnek bir sınırlayıcı genişlik */
+    .App {
+      flex-direction: column; /* Küçük ekranlarda sıralı düzene geçin */
+    }
+  
+    .App-header {
+      min-height: auto; /* Küçük ekranlarda yükseklik otomatik ayarlanacak */
+    }
+  
+    .canvas_container {
+      max-width: 100%; /* Küçük ekranlarda genişliği tam ekran yapın */
+    }
+}
+
+.loading{
+    visibility: hidden;
+}
