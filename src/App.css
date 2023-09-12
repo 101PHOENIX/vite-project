@@ -60,6 +60,13 @@
   margin-right: 5px;
 }
 
+
+
+
+
+
+/**********************/
+
 .landing {
   min-height: 100vh;
   display: flex;
@@ -77,6 +84,11 @@
 .selectors {
   margin-left: 30px;
 }
+/**********************/
+
+
+
+
 
 .downloadbutton{
   padding: 1rem 2rem;
@@ -96,6 +108,11 @@
   margin-left: 5px;
 }
 
+
+
+
+/**********************/
+
 .button-div {
   display: flex;
   justify-content: center;
@@ -108,10 +125,23 @@
   font-size: 20px;
   resize: none;
 }
+/**********************/
+
+
+
+
+
 
 .createdMnemonic{
   visibility: hidden;
 }
+
+
+
+
+
+
+/**********************/
 
 .canvas-div {
   display: flex;
@@ -124,6 +154,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+
 
 .regeneratebutton_img{
   padding: 1rem 0rem;
@@ -144,10 +176,28 @@
   width: 400px;
   margin-bottom: 10px;
 }
+/**********************/
+
+
+
+
+
+
 
 .regeneratebutton:hover{
   background-image: linear-gradient(-180deg, #ffd900 0%, #ffd900 100%);
 }
+
+
+
+
+
+
+
+
+
+
+/**********************/
 
 textarea:focus, input:focus, .createbutton:focus, .downloadbutton:focus, .regeneratebutton_img:focus {
   outline: none;
@@ -157,6 +207,17 @@ textarea:focus, input:focus, .createbutton:focus, .downloadbutton:focus, .regene
   background-color: rgb(255, 238, 84);
   border: 1px solid rgb(255, 238, 84);
 }
+
+/**********************/
+
+
+
+
+
+
+
+
+
 
 .canvas_container
 {
@@ -170,9 +231,16 @@ textarea:focus, input:focus, .createbutton:focus, .downloadbutton:focus, .regene
     flex: 1;
 
     /* this fixes the overflow:hidden in Chrome/Opera */
-    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+   /* -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); */
 }
 
+
+
+
+
+
+
+/**********************/
 .header {
   font-size: 50px;
   font-weight: 600;
@@ -204,6 +272,16 @@ textarea:focus, input:focus, .createbutton:focus, .downloadbutton:focus, .regene
   border: 1px solid #ffdb00;
   cursor: pointer;
 }
+/**********************/
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 768px) { /* Örnek bir sınırlayıcı genişlik */
   .App {

@@ -1,4 +1,5 @@
 import './App.css';
+//import './style.css';
 import React, { useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
@@ -69,8 +70,8 @@ function App(){
       })
       let source=response.data[0].url;
       console.log("source: " + source);
-      source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
-      console.log("NEW_source: " + source);
+     // source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
+     // console.log("NEW_source: " + source);
 
     //  document.getElementById("regenerateImage").innerHTML = source;
 
@@ -85,7 +86,7 @@ function App(){
           break;
         }
       };
-      setLongUrl(source)
+      setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
       setbuttonClicked(true)
      // return buttonClicked = true
     }catch(error){
@@ -148,9 +149,9 @@ function App(){
             // source: dall-e den gelen resmin urlsi. 
             let source=response.data[0].url;
             console.log("source "+ source);
-            source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
-            console.log("NEW_source: " + source);
-            setLongUrl(source)
+           // source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
+           // console.log("NEW_source: " + source);
+            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
   
             //  document.getElementById("A").innerHTML = source;
             // Canvas (Tuval) ögesinin resetlenmesi ve arka planın beyaz yapılması
@@ -211,7 +212,7 @@ function App(){
             document.getElementById("textbutton").style.visibility='visible';
   
             setLoading(false);
-            setLongUrl(source)
+            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
           } catch(error){
             console.error("Error in create function", error);
             setLoading(false);
@@ -312,7 +313,7 @@ function App(){
               harfSayisiText = convertNumericToText(harfSayisi.toString());
               console.log("Harf Sayısı (Yazısal): " + harfSayisiText);
 
-              if (harfSayisiText == numbers){
+              if (harfSayisiText == numberstext){
                   break;
               } else{
                   continue;
@@ -342,9 +343,9 @@ function App(){
             // source: dall-e den gelen resmin urlsi. 
             let source=response.data[0].url;
             console.log("source "+ source);
-            source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
-            console.log("NEW_source: " + source);
-            setLongUrl(source)
+          //  source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
+          //  console.log("NEW_source: " + source);
+            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
   
           //  document.getElementById("A").innerHTML = source;
   
@@ -415,7 +416,7 @@ function App(){
             document.getElementById("textbutton").style.visibility='visible';
   
             setLoading(false);
-            setLongUrl(source)
+            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
           } catch(error){
             console.error("Error in create function", error);
             setLoading(false);
@@ -453,6 +454,7 @@ const downloadMnemonic = async (url) => {
 //******************************************* */
     if (buttonClicked) {
       let newImage = new Image();
+      console.log("longUrl: " + longUrl );
       newImage.src = longUrl;
         newImage.onload = function() {
           // Görsel yüklendikten sonra çizme işlemini gerçekleştir
@@ -470,9 +472,10 @@ const downloadMnemonic = async (url) => {
 
     } else {
         // Düğme tıklanmadıysa createImage_source değerini kullan
-      //  const createImage_source = document.getElementById("A").innerHTML;
+        //  const createImage_source = document.getElementById("A").innerHTML;
         //let source=createImage_source.data[0].url;
         let newImage = new Image();
+        console.log("longUrl: " + longUrl );
         newImage.src = longUrl;
         newImage.onload = function() {
           // Görsel yüklendikten sonra çizme işlemini gerçekleştir
