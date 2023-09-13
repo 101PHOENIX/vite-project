@@ -32,7 +32,7 @@ function App(){
   const [newmaintext, setnewmaintext] = useState("");
   const [mnemonicText, setMnemonicText] = useState("");
   const [longUrl, setLongUrl] = useState('');
-  const [buttonClicked_newimage, setbuttonClicked_newimage] = useState(false);
+  const [buttonClicked, setbuttonClicked] = useState(false);
   const [sentence, setsentence] = useState(false);
 
 /*
@@ -75,33 +75,18 @@ function App(){
 
     //  document.getElementById("regenerateImage").innerHTML = source;
 
-    if(sentence){
-        let newImage = new Image();
+      let newImage = new Image();
       newImage.src = source;
       newImage.onload = function() {
         ctx.drawImage(newImage, 505, 5,400,400); // (x, y) coordinates for the top-left corner of the image
-        while(true){
-          if(newImage.complete){
-            setLoading(false);
-          }
-          break;
-        }
-      };
-    } else {
-        let newImage = new Image();
-      newImage.src = source;
-      newImage.onload = function() {
-        ctx.drawImage(newImage, 505, 5,400,400); // (x, y) coordinates for the top-left corner of the image
-
         let fontSize = 40;
-        let fontFamily = 'Arial';
-        let textColor = 'Red';
-        ctx.fillStyle = textColor;   
-        ctx.font = `${fontSize}px ${fontFamily}`;
+              let fontFamily = 'Arial';
+              let textColor = 'Red';
+              ctx.fillStyle = textColor;   
+              ctx.font = `${fontSize}px ${fontFamily}`;
               
-        ctx.fillText(newmaintext, 600, 40);
 
-        
+              ctx.fillText(maintext, 600, 40);
         while(true){
           if(newImage.complete){
             setLoading(false);
@@ -109,11 +94,9 @@ function App(){
           break;
         }
       };
-      }
-
-      
-      setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
-      setbuttonClicked_newimage(true)
+      setLongUrl(source)
+      //setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
+      setbuttonClicked(true)
      // return buttonClicked = true
     }catch(error){
       console.error(error);
@@ -144,7 +127,7 @@ function App(){
       // seven risk factors of long cancer 
       if(button1){
         setsentence(true)
-        prompt=`Can you create a funny, catchy, engaging, and meaningful mnemonic phrase with this "${words}" phrase? Don't explain the mnemonic. create a mnemonic in quotes.`;
+        prompt=`Can you create a funny, catchy and meaningful mnemonic phrase with this phrase "${words}"?`;
         async function create() {
           try {
             const chatCompletion =  await openai.chat.completions.create({
@@ -179,7 +162,8 @@ function App(){
             console.log("source "+ source);
            // source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
            // console.log("NEW_source: " + source);
-            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
+            setLongUrl(source)
+           //setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
   
             //  document.getElementById("A").innerHTML = source;
             // Canvas (Tuval) ögesinin resetlenmesi ve arka planın beyaz yapılması
@@ -194,7 +178,6 @@ function App(){
               // Metni sola ve resmi sağa yerleştir
               let fontSize = 40;
               let fontFamily = 'Arial';
-              
 
              // Sol tarafta text1'i ve altına text2'yi yaz
               ctx.fillStyle = 'black'; // Metin rengi
@@ -232,7 +215,8 @@ function App(){
 
               // Resmi sağa yerleştir
               //ctx.drawImage(newImage, canvas.width / 2 + 5, 5, canvas.width / 2 - 10, canvas.height - 10);
-              ctx.drawImage(newImage, 505, 5,400,400);
+              ctx.drawImage(newImage, 505, 5,400,400); 
+              
 
             };
             // Create Mnemonic butonuna bastıktan sonra Download ve Regenerate butonlarının görünür olması. 
@@ -241,7 +225,8 @@ function App(){
             document.getElementById("textbutton").style.visibility='visible';
   
             setLoading(false);
-            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
+            setLongUrl(source)
+            //setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
           } catch(error){
             console.error("Error in create function", error);
             setLoading(false);
@@ -253,7 +238,7 @@ function App(){
       else if(button2){
           setsentence(false)
         // seven risk factors of long cancer
-        prompt=`Create a reminder for ${words}. The output format should be exactly like "ABCD": A****#B*****#C*****#D****. Hashtags and quotes are really important. For example, writing a number as a letter or number anywhere in the text. You must find the letters that are equal to the mathematical value of this number and create a meaningful, fun, and interesting sentence by combining these letters. If a meaningful, funny, and interesting sentence cannot be formed, you should continue to find other letters until a meaningful, funny, and interesting sentence is formed. The letters should be such that when combined, they form a meaningful, fun, and interesting word. If there are six numbers the output might look like this. It goes like this: "SUNSET": S- Smoking# U-Unhealthy diet# N - Lack of exercise# S - Sun exposure# E - Environmental toxins# T - Tobacco and alcohol use.`;
+        prompt=`Create a reminder for ${words}. The output format should be exactly like "ABCD":A****#B*****#C*****#D****. Hashtags and quotes are really important. For example, if a number is written anywhere in the text as a letter or a number. You must find as many letters as the mathematical value of that number and combine these letters to form a meaningful sentence. If a meaningful sentence cannot be formed, you should continue to find other letters until a meaningful sentence is formed. The letters should be such that when combined, they form a meaningful word. If there is a number Six the output might look like this. It goes like this: "SUNSET": S- Smoking# U-Unhealthy diet# N - Not exercising# S - Sun exposure# E - Environmental toxins# T - Tobacco and alcohol use.`;
         async function create() {
           try {
             function convertNumericToText(expression) {
@@ -309,16 +294,13 @@ function App(){
             // Gelen cevabın parçalara ayrılması
 
             // BAŞ KISALTILMIŞ KELİMEYİ ALIYOR ""EAGLE""
-            var inquotes = responseData.split(":")[0];
-            console.log("inquotes: " + inquotes);
-            setnewmaintext(inquotes);
+            var maintext =responseData.split('"')[1];
+            maintext = maintext.replace(/\s+/g, '');
+            console.log("maintext: " + maintext);
+            setnewmaintext(maintext);
 
-            var deneme =responseData.split('"')[1];
-            deneme = deneme.replace(/\s+/g, '');
-            console.log("deneme: " + deneme);
-
-            var harfSayisi = deneme.length;
-            console.log("deneme içindeki harf sayısı: " + harfSayisi);
+            var harfSayisi = maintext.length;
+            console.log("maintext içindeki harf sayısı: " + harfSayisi);
             // Harf sayısını yazısal ifadelerle eşleştirin
             var harfSayisiText = convertNumericToText(harfSayisi.toString());
             console.log("Harf Sayısı (Yazısal): " + harfSayisiText);
@@ -334,19 +316,15 @@ function App(){
               console.log("responseData: " + responseData);
 
               // BAŞ KISALTILMIŞ KELİMEYİ ALIYOR ""EAGLE""
-              inquotes = responseData.split(":")[0];
-              console.log("inquotes: " + inquotes);
+              maintext =responseData.split('"')[1];
+              maintext = maintext.replace(/\s+/g, '');
+              console.log("maintext: " + maintext);
+              setnewmaintext(maintext);
+              //var maintext = maintext.replace( /-/g, '');
+              //console.log("maintext: " + maintext);
 
-              deneme =responseData.split('"')[1];
-              deneme = deneme.replace(/\s+/g, '');
-              console.log("deneme: " + deneme);
-              var maintext = deneme
-              setnewmaintext(inquotes);
-              //var deneme = deneme.replace( /-/g, '');
-              //console.log("deneme: " + deneme);
-
-              harfSayisi = deneme.length;
-              console.log("deneme içindeki harf sayısı: " + harfSayisi);
+              harfSayisi = maintext.length;
+              console.log("maintext içindeki harf sayısı: " + harfSayisi);
 
               harfSayisiText = convertNumericToText(harfSayisi.toString());
               console.log("Harf Sayısı (Yazısal): " + harfSayisiText);
@@ -383,7 +361,8 @@ function App(){
             console.log("source "+ source);
           //  source = source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/");
           //  console.log("NEW_source: " + source);
-            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
+          setLongUrl(source)
+          //setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
   
           //  document.getElementById("A").innerHTML = source;
   
@@ -401,7 +380,6 @@ function App(){
               
               ctx.drawImage(newImage, 505, 5,400,400); // (x, y) coordinates for the top-left corner of the image
               
-              
               // newImage.complete ifadesinin true olması resmin ekrana basıldığını belirtir. 
               // aşağıdaki satır resim ekrana basıldıktan sonra loading textini ekrandan kaldırır.
                   
@@ -411,8 +389,10 @@ function App(){
               let textColor = 'Red';
               ctx.fillStyle = textColor;   
               ctx.font = `${fontSize}px ${fontFamily}`;
-                
-              ctx.fillText(inquotes, 600, 40);
+              
+
+              ctx.fillText(maintext, 600, 40);
+              
               
 
               console.log("word_list: " + word_list);
@@ -454,7 +434,8 @@ function App(){
             document.getElementById("textbutton").style.visibility='visible';
   
             setLoading(false);
-            setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
+            setLongUrl(source)
+            //setLongUrl(source.replace("https://oaidalleapiprodscus.blob.core.windows.net/", "api/"))
           } catch(error){
             console.error("Error in create function", error);
             setLoading(false);
@@ -490,194 +471,53 @@ const downloadMnemonic = async (url) => {
     ctx.fill();
     
 //******************************************* */
+    if (buttonClicked) {
+      let newImage = new Image();
+      console.log("longUrl: " + longUrl );
+      newImage.src = longUrl;
+        newImage.onload = function() {
+          // Görsel yüklendikten sonra çizme işlemini gerçekleştir
 
-    if (sentence){
-      const mnemonicText = document.getElementById("CreatedMnemonic").textContent;
+          ctx.drawImage(newImage, 505, 5, 400, 400); // (x, y) coordinates for the top-left corner of the image
 
-      const text_1 = mnemonicText;
-      console.log("text_1: " + text_1);
+          // Canvas içeriğini resim olarak kaydetme
+          const imageURI = canvas.toDataURL("image/png");
 
-      // Metni sola ve resmi sağa yerleştir
-      let fontSize = 40;
-      let fontFamily = 'Arial';
+          // Bir "a" elementi oluşturarak indirme işlemini tetikleme
+          const downloadLink = document.createElement("a");
+          downloadLink.href = imageURI;
+          downloadLink.download = "mnemonic_image.png";
+          downloadLink.click();
+        };
 
-     // Sol tarafta text1'i ve altına text2'yi yaz
-      let textColor = 'Black';
-      ctx.fillStyle = textColor; // Metin rengi
-      ctx.font = `${fontSize}px ${fontFamily}`;
-      ctx.textAlign = 'left'; // Metin hizalama
-      ctx.textBaseline = 'top'; // Metin taban hizalama
-
-       // Metinlerin yazılacağı başlangıç koordinatları
-      let x = 10;
-      let y = 10;
-
-      const maxLineWidth = canvas.width / 2 - 20; // Metinlerin maksimum genişliği
-
-      function writeText(text) {
-        const words = text.trim().split(' ');
-
-        for (const word of words) {
-          const wordWidth = ctx.measureText(word).width;
-
-          if (x + wordWidth > maxLineWidth) {
-            // Kelimenin yazılması bu satıra sığmazsa alt satıra geç
-            x = 10;
-            y += fontSize + 20; // 20 piksel boşluk bırak
-          }
-
-          ctx.fillText(word, x, y);
-
-          // Kelimenin sonuna boşluk eklemeyi unutma
-          x += wordWidth + ctx.measureText(' ').width;
-        }
-      }
-
-      writeText(text_1);
-
-      if (buttonClicked_newimage) {
+    } else {
+        // Düğme tıklanmadıysa createImage_source değerini kullan
+        //  const createImage_source = document.getElementById("A").innerHTML;
+        //let source=createImage_source.data[0].url;
         let newImage = new Image();
         console.log("longUrl: " + longUrl );
         newImage.src = longUrl;
-          newImage.onload = function() {
-            // Görsel yüklendikten sonra çizme işlemini gerçekleştir
-            ctx.drawImage(newImage, 505, 5, 400, 400); // (x, y) coordinates for the top-left corner of the image
-  
-            // Canvas içeriğini resim olarak kaydetme
-            const imageURI = canvas.toDataURL("image/png");
-  
-            // Bir "a" elementi oluşturarak indirme işlemini tetikleme
-            const downloadLink = document.createElement("a");
-            downloadLink.href = imageURI;
-            downloadLink.download = "mnemonic_image.png";
-            downloadLink.click();
-          };
-  
-      } else {
-          // Düğme tıklanmadıysa createImage_source değerini kullan
-          //  const createImage_source = document.getElementById("A").innerHTML;
-          //let source=createImage_source.data[0].url;
-          let newImage = new Image();
-          console.log("longUrl: " + longUrl );
-          newImage.src = longUrl;
-          newImage.onload = function() {
-            // Görsel yüklendikten sonra çizme işlemini gerçekleştir
-            ctx.drawImage(newImage, 505, 5, 400, 400); // (x, y) coordinates for the top-left corner of the image
-            // Canvas içeriğini resim olarak kaydetme
-            const imageURI = canvas.toDataURL("image/png");
-  
-            // Bir "a" elementi oluşturarak indirme işlemini tetikleme
-            const downloadLink = document.createElement("a");
-            downloadLink.href = imageURI;
-            downloadLink.download = "mnemonic_image.png";
-            downloadLink.click();
-      };
-  
-      }
-    }else{
-      // Yazıları çizme
-    const mnemonicText = document.getElementById("CreatedMnemonic").textContent;
+        newImage.onload = function() {
+          // Görsel yüklendikten sonra çizme işlemini gerçekleştir
 
-    const mnemonicData = mnemonicText.split(":")[1];
-    console.log("mnemonicData_downloadButton: "+ mnemonicData);
+          ctx.drawImage(newImage, 505, 5, 400, 400,); // (x, y) coordinates for the top-left corner of the image
+          // Canvas içeriğini resim olarak kaydetme
+          const imageURI = canvas.toDataURL("image/png");
 
-    const word_list = mnemonicData.split("#");
-    console.log("word_list_downloadButton: " + word_list);
+          // Bir "a" elementi oluşturarak indirme işlemini tetikleme
+          const downloadLink = document.createElement("a");
+          downloadLink.href = imageURI;
+          downloadLink.download = "mnemonic_image.png";
+          downloadLink.click();
+    };
 
-      let fontSize = 40;
-      let fontFamily = 'Arial';
-      let textColor = 'Red';
-      ctx.fillStyle = textColor;   
-      ctx.font = `${fontSize}px ${fontFamily}`;
-
-      //ctx.fillText(newmaintext, 600, 40);
-  
-      console.log("word_list: " + word_list);
-        for(let k=0;k<word_list.length;k++){
-            ctx.font = `${fontSize}px ${fontFamily}`;
-            ctx.fillText(
-              word_list[k].trim()[0].toUpperCase(), 
-              5, 
-              ((400-word_list.length*32)/2)+40*k);
-          }
-  
-            fontFamily = 'Arial bold';
-            ctx.font = `${fontSize}px ${fontFamily}`;
-            
-            for(let t=0;t<word_list.length;t++){
-              if(word_list[t].length>30){
-                  fontSize = fontSize*25/(word_list[t].length);
-              }
-              let textColor = 'Black';
-              ctx.fillStyle = textColor;
-              ctx.font = `${fontSize}px ${fontFamily}`;
-              ctx.fillText(word_list[t].trim().substr(1), 35, ((400-word_list.length*32)/2)+40*t);
-              fontSize = 40;
-            }
-
-      if (buttonClicked_newimage) {
-        let newImage = new Image();
-        console.log("longUrl: " + longUrl );
-        newImage.src = longUrl;
-          newImage.onload = function() {
-            // Görsel yüklendikten sonra çizme işlemini gerçekleştir
-            ctx.drawImage(newImage, 505, 5, 400, 400); // (x, y) coordinates for the top-left corner of the image
-  
-            let fontSize = 40;
-            let fontFamily = 'Arial';
-            let textColor = 'Red';
-            ctx.fillStyle = textColor;   
-            ctx.font = `${fontSize}px ${fontFamily}`;
-  
-            ctx.fillText(newmaintext, 600, 40);
-  
-            // Canvas içeriğini resim olarak kaydetme
-            const imageURI = canvas.toDataURL("image/png");
-  
-            // Bir "a" elementi oluşturarak indirme işlemini tetikleme
-            const downloadLink = document.createElement("a");
-            downloadLink.href = imageURI;
-            downloadLink.download = "mnemonic_image.png";
-            downloadLink.click();
-          };
-  
-      } else {
-          // Düğme tıklanmadıysa createImage_source değerini kullan
-          //  const createImage_source = document.getElementById("A").innerHTML;
-          //let source=createImage_source.data[0].url;
-          let newImage = new Image();
-          console.log("longUrl: " + longUrl );
-          newImage.src = longUrl;
-          newImage.onload = function() {
-            // Görsel yüklendikten sonra çizme işlemini gerçekleştir
-            ctx.drawImage(newImage, 505, 5, 400, 400); // (x, y) coordinates for the top-left corner of the image
-  
-            let fontSize = 40;
-            let fontFamily = 'Arial';
-            let textColor = 'Red';
-            ctx.fillStyle = textColor;   
-            ctx.font = `${fontSize}px ${fontFamily}`;
-  
-            ctx.fillText(newmaintext, 600, 40);
-            // Canvas içeriğini resim olarak kaydetme
-            const imageURI = canvas.toDataURL("image/png");
-  
-            // Bir "a" elementi oluşturarak indirme işlemini tetikleme
-            const downloadLink = document.createElement("a");
-            downloadLink.href = imageURI;
-            downloadLink.download = "mnemonic_image.png";
-            downloadLink.click();
-      };
-  
-      }
     }
-    
     
     /*
     //**************************************** */
     
     
-/*
+
     if(sentence){
       // Yazıları çizme
     const mnemonicText = document.getElementById("CreatedMnemonic").textContent;
@@ -737,8 +577,6 @@ const downloadMnemonic = async (url) => {
         let textColor = 'Red';
         ctx.fillStyle = textColor;   
         ctx.font = `${fontSize}px ${fontFamily}`;
-
-        //ctx.fillText(newmaintext, 600, 40);
     
         console.log("word_list: " + word_list);
           for(let k=0;k<word_list.length;k++){
@@ -763,7 +601,7 @@ const downloadMnemonic = async (url) => {
                 fontSize = 40;
               }
     }
-    */
+    
 
   } catch (error) {
     console.error("Error in create function", error);
