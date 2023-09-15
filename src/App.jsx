@@ -671,99 +671,6 @@ const downloadMnemonic = async (url) => {
   
       }
     }
-    
-    
-    /*
-    //**************************************** */
-    
-    
-/*
-    if(sentence){
-      // Yazıları çizme
-    const mnemonicText = document.getElementById("CreatedMnemonic").textContent;
-
-      const text_1 = mnemonicText;
-      console.log("text_1: " + text_1);
-
-      // Metni sola ve resmi sağa yerleştir
-      let fontSize = 40;
-      let fontFamily = 'Arial';
-
-     // Sol tarafta text1'i ve altına text2'yi yaz
-      let textColor = 'Black';
-      ctx.fillStyle = textColor; // Metin rengi
-      ctx.font = `${fontSize}px ${fontFamily}`;
-      ctx.textAlign = 'left'; // Metin hizalama
-      ctx.textBaseline = 'top'; // Metin taban hizalama
-
-       // Metinlerin yazılacağı başlangıç koordinatları
-      let x = 10;
-      let y = 10;
-
-      const maxLineWidth = canvas.width / 2 - 20; // Metinlerin maksimum genişliği
-
-      function writeText(text) {
-        const words = text.trim().split(' ');
-
-        for (const word of words) {
-          const wordWidth = ctx.measureText(word).width;
-
-          if (x + wordWidth > maxLineWidth) {
-            // Kelimenin yazılması bu satıra sığmazsa alt satıra geç
-            x = 10;
-            y += fontSize + 20; // 20 piksel boşluk bırak
-          }
-
-          ctx.fillText(word, x, y);
-
-          // Kelimenin sonuna boşluk eklemeyi unutma
-          x += wordWidth + ctx.measureText(' ').width;
-        }
-      }
-      writeText(text_1);
-      
-    }else{
-      // Yazıları çizme
-    const mnemonicText = document.getElementById("CreatedMnemonic").textContent;
-
-      const mnemonicData = mnemonicText.split(":")[1];
-      console.log("mnemonicData_downloadButton: "+ mnemonicData);
-  
-      const word_list = mnemonicData.split("#");
-      console.log("word_list_downloadButton: " + word_list);
-  
-        let fontSize = 40;
-        let fontFamily = 'Arial';
-        let textColor = 'Red';
-        ctx.fillStyle = textColor;   
-        ctx.font = `${fontSize}px ${fontFamily}`;
-
-        //ctx.fillText(newmaintext, 600, 40);
-    
-        console.log("word_list: " + word_list);
-          for(let k=0;k<word_list.length;k++){
-              ctx.font = `${fontSize}px ${fontFamily}`;
-              ctx.fillText(
-                word_list[k].trim()[0].toUpperCase(), 
-                5, 
-                ((400-word_list.length*32)/2)+40*k);
-            }
-    
-              fontFamily = 'Arial bold';
-              ctx.font = `${fontSize}px ${fontFamily}`;
-              
-              for(let t=0;t<word_list.length;t++){
-                if(word_list[t].length>30){
-                    fontSize = fontSize*25/(word_list[t].length);
-                }
-                let textColor = 'Black';
-                ctx.fillStyle = textColor;
-                ctx.font = `${fontSize}px ${fontFamily}`;
-                ctx.fillText(word_list[t].trim().substr(1), 35, ((400-word_list.length*32)/2)+40*t);
-                fontSize = 40;
-              }
-    }
-    */
 
   } catch (error) {
     console.error("Error in create function", error);
@@ -775,8 +682,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const downloadButton = document.getElementById("downloadButton");
   downloadButton.addEventListener("click", downloadMnemonic);
 });
-  
-  
   
   return (
     <div className="App">
